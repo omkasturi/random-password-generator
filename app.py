@@ -1,13 +1,13 @@
 from tkinter import *
 import string
 import random
-import pyperclip
+from tkinter import messagebox
 
-
+# Function to generate a random password based on strength
 def generator():
     # Clear the previous password
     passwordField.delete(0, END)
-    
+
     # Available characters
     small_alphabets = string.ascii_lowercase
     capital_alphabets = string.ascii_uppercase
@@ -29,9 +29,12 @@ def generator():
     passwordField.insert(0, password)
 
 
+# Function to copy the password to clipboard without pyperclip
 def copy():
     random_password = passwordField.get()
-    pyperclip.copy(random_password)
+    root.clipboard_clear()  # Clear the clipboard
+    root.clipboard_append(random_password)  # Append the password to the clipboard
+    messagebox.showinfo("Copied", "Password copied to clipboard!")  # Show a message when copied
 
 
 # Setting up the GUI
